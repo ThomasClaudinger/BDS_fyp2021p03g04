@@ -9,6 +9,20 @@ from skimage import morphology
 from scipy.spatial.distance import cdist
 from scipy.stats.stats import mode
 
+def rgb2gray(rgb):
+
+    r, g, b = rgb[:,:,0], rgb[:,:,1], rgb[:,:,2]
+    gray = 0.2989 * r + 0.5870 * g + 0.1140 * b
+
+    return gray
+
+def centerpoint(mask):
+    borders = np.where(mask != 0) # This will return 2 arrays with the index where the pixels are ones
+    up, down, left, right = max(borders[0]), min(borders[0]), min(borders[1]), max(borders[1])
+    center = ((up+down) //2, (left + right) //2) # Tuple with the coordinates for the center of the lesion
+    
+    return center
+
 
 def scatter_data(x1, x2, y, ax=None):
     # scatter_data displays a scatterplot of featuress x1 and x2, and gives each point

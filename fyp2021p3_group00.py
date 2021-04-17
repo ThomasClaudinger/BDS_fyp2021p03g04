@@ -53,9 +53,25 @@ for i in np.arange(num_images):
     features_area[i,0] = a
     features_perimeter[i,0] = p
     
-    ###### TODO - Here you should measure and store some other features
+    image_type = type(im)
+    print(image_type)
+    image_shape = im.shape
+    image_hight = im.shape[0] 
+    image_width = im.shape[1]
+    dimension_image =  im.ndim #three layers: Red, Green, Blue
 
 
+  
+
+properties_image = {"image_type": image_type,
+                    "image_shape": image_shape,
+                    "image_hight": image_hight
+                    "image_width": image_width,
+                    "dimension": dimension_image
+                    }
+
+df_properties_img = pd.DataFrame(properties_image)
+df_properties_img                
 
 # Store these features so you can reuse them later
 feature_data = {"id": image_id, 
